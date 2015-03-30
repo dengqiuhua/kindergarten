@@ -1,0 +1,186 @@
+{% extends 'web-base.html' %}
+{% block title %}{% endblock %}
+
+{% block main %}
+    <div class="breadcrumbs margin-bottom-30">
+        <div class="container">
+            {% if noticelist %}
+            <ul class="pull-left breadcrumb">
+                <li id="notice"><i class="icon-volume-down color-green"></i> 公告：
+                    {% for notice in noticelist %}
+                    <a href="{% url 'web-news-detail' notice.id %}" title="{{ notice.title }}">{{ notice.title }}</a>
+                    {% endfor %}
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span8">
+                {% if recommendationlist %}
+                <!-- ***************************图片轮播***********myCarousel************************ -->
+                <div id="myCarousel" class="carousel slide">
+                    <ol class="carousel-indicators">
+                        {% for recommend in recommendationlist %}
+                        <li data-target="#myCarousel" data-slide-to="{{ recommend.index }}" class="{% ifequal recommend.index 0 %}active{% endifequal %}"></li>
+                        {% endfor %}
+                    </ol>
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+
+                            {% for recommend in recommendationlist %}
+
+                            <div class="item {% ifequal recommend.index 0 %}active{% endifequal %}">
+                                <img src="{{ recommend.imagepath }}" alt="">
+                                <div class="carousel-caption">
+                                    <h4>{{ recommend.type }}</h4>
+                                    <p>
+                                        {{ recommend.title }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+
+                    </div>
+                    <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                </div>
+                <!-- ***************************图片轮播***********myCarousel***end********************* -->
+                {% endif %}
+            </div>
+            <div class="span4">
+                <div class="widget-news">
+                    <div class="headline">
+                        <q class="more"><a href="{% url 'web-news' %}">more</a></q>
+                        <h3>资讯动态</h3>
+                    </div>
+                    <ul id="newNews" class="cat">
+                        {% if newslist %}
+                        {% for news in newslist %}
+                        <li><i class=" icon-chevron-right color-green"></i>
+                            <a href="{% url 'web-news-detail' news.id %}" title="{{ news.title }}">{{ news.title }}</a>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span8">
+                <!--**************************************最新活动  start*************************************-->
+                <div class="headline">
+                    <h3 style=" border-bottom-color:#585F69; color:#72C02C">最新活动</h3>
+                </div>
+                <div class="row-fluid">
+                    <ul class="thumbnails">
+                        {% if activitylist %}
+                        {% for activity in activitylist %}
+                        <li class="span4">
+                            <div class="thumbnail">
+                                <a href="{% url 'web-activity-detail' activity.id %}" target="_blank">
+                                    <img alt="300x200" style="width: 300px; height: 200px;" src="{{ activity.Image }}">
+                                </a>
+                                <div class="caption">
+                                    <p><a href="{% url 'web-activity-detail' activity.id %}" target="_blank">{{ activity.title }}</a></p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+                <!--**************************************最新活动  end*************************************-->
+                <!--**************************************精彩课程  start*************************************-->
+                <div class="headline">
+                    <h3>精彩课程</h3>
+                </div>
+                <div class="row-fluid">
+                    <ul class="thumbnails">
+                        {% if courselist %}
+                        {% for course in courselist %}
+                        <li class="span4">
+                            <div class="thumbnail">
+                                <a href="{% url 'web-course-detail' course.id %}" target="_blank">
+                                    <img alt="300x200" style="width: 300px; height: 200px;" src="{{ course.imagepath }}">
+                                </a>
+                                <div class="caption">
+                                    <p><a href="{% url 'web-course-detail' course.id %}" target="_blank">{{ course.title }}</a></p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+                <!--**************************************精彩课程  end*************************************-->
+
+            </div>
+            <div class="span4">
+                <!--**************************************班级直通车  start*************************************-->
+                <div class="headline">
+                    <h3>关注我们</h3>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">
+                        <div class="thumbnail">
+                        <img src="/static/img/banner/qrcode_weixin.jpg" />
+                        </div>
+                        <p class="text-center">微信:有味生活</p>
+                    </div>
+                    <div class="span4">
+                        <div class="thumbnail">
+                        <img src="/static/img/banner/qrcode_weibo.png" />
+                        </div>
+                        <p class="text-center">微博:@有味生活</p>
+                    </div>
+                    <div class="span4 text-center">
+                        <a class="btn btn-success" href="{% url 'web-reservation' %}" style="margin-top: 40%;"><i class="icon-eye-open"></i> 家长预约</a>
+                    </div>
+                </div>
+
+                <div class="headline">
+                    <h3>班级直通车</h3>
+                </div>
+                <div>
+                    {% if classlist %}
+                    {% for class in classlist %}
+                    <div >
+                        <p class="pull-left"><i class="icon-file"></i></p>
+                        <div class="overflow-hidden"><h4>
+                            <a target="_blank" href="{% url 'web-class-detail' class.id %}">{{ class.classname }} </a>
+                        </h4>
+                            <p>班主任：{{ class.headteacher }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <!--**************************************班级直通车  end*************************************-->
+                <!--**************************************育儿宝典  start*************************************-->
+                <div class="headline">
+                    <q class="more"><a href="{% url 'web-education' %}">more</a></q>
+                    <h3>育儿宝典</h3>
+                </div>
+                <ul id="newCare" class="cat">
+                    {% if educationlist %}
+                        {% for education in educationlist %}
+                        <li><i class=" icon-chevron-right color-green"></i>
+                            <a href="{% url 'web-education-detail' education.id %}" title="{{ education.title }}">{{ education.title }}</a>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                </ul>
+                <!--**************************************育儿宝典  end*************************************-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

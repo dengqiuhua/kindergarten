@@ -1,0 +1,50 @@
+{% extends 'web-base.html' %}
+{% block title %}{{ news.title }}-新闻公告{% endblock %}
+
+{% block main %}
+<div class="breadcrumbs margin-bottom-30">
+    <div class="container">
+        <ul class="pull-left breadcrumb">
+            <li><a href="{% url 'index' %}">首页</a> <span class="divider">/</span></li>
+            <li><a href="{% url 'web-news' %}">新闻公告</a> <span class="divider">/</span></li>
+            <li class="active">{{ news.title }}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span8">
+            <div style="text-align: center; border-bottom: 1px solid #ccc;">
+                <h3>{{ news.title }}</h3>
+                <p>
+                    <span class="muted">来源：{{ news.author }}</span> &nbsp;
+                    <span class="muted">日期：{{ news.createtime }}</span>
+                </p>
+            </div>
+            <div style="margin-top: 20px;">
+                {{ news.content|safe }}
+            </div>
+        </div>
+        <div class="span4">
+            <div class="headline">
+                <h3>最新新闻</h3>
+            </div>
+            <div>
+                <ul id="newNews" class="cat">
+                    {% if newslist %}
+                        {% for news in newslist %}
+                            <li><i class=" icon-chevron-right color-green"></i>
+                                <a href="{% url 'web-news-detail' news.id %}"
+                                   title="{{ news.title }}">{{ news.title }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

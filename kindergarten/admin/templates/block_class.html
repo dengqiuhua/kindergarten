@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}班级管理{% endblock %}
+
+{% block main %}
+<div class="row-fluid">
+    <div class="span2 bs-docs-sidebar">
+        <ul id="ul_left_menu" class="nav nav-list bs-docs-sidenav affix">
+            <li class="{% ifequal leftnav 1 %}active{% endifequal %}"><a href="{% url 'admin-class' %}"><i class="icon-home"></i>班级管理</a></li>
+            <li class="{% ifequal leftnav 2 %}active{% endifequal %}"><a href="{% url 'admin-students' %}"> <i class="icon-user"></i> 学生管理</a></li>
+            <li class="{% ifequal leftnav 3 %}active{% endifequal %}"><a href="{% url 'admin-teacher' %}"> <i class="icon-book"></i> 教师管理</a></li>
+        </ul>
+    </div>
+    <!--/span-->
+    <div class="span10">
+        {% block container %}container-{% endblock %}
+    </div>
+    <!--/span-->
+</div>
+{% endblock %}

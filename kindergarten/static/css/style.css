@@ -1,0 +1,198 @@
+body{ padding-top: 44px;}
+
+/*-----------------------------------------------网站样式----------------------------------------------------------*/
+#nav_top{ border-bottom: 3px solid #2299ff;}
+#nav_top .navbar-inner{ background-image: none;}
+#index_form {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 20px;
+    max-width: 400px;
+    padding: 19px 29px 29px;
+    margin-top: 2%;
+}
+#index_form .control-label{width: 60px;}
+#index_form .control{ margin-left: 70px;}
+#index_form #tab_regester input{ width: 320px;}
+#index_form #tab_regester h3{ display: inline-block; color: #777; margin-right: 5px;}
+#index_form #tab_regester h3 a{ color: #777; text-decoration: none;}
+#index_form #tab_regester .active{ color: #222; border-bottom: 3px solid #bd362f;}
+#loginform_code label{ display: none;}
+#loginform_code input{ width: 100px;}
+
+.nav-list [class^="icon-"], .nav-list [class*=" icon-"]{ float: right;}
+.bs-docs-sidenav{width:6.38298%; background-color: #fff;border-radius: 6px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);margin: 30px 0 0; padding: 0;}
+
+.bs-docs-sidenav > li > a {
+    border: 1px solid #e5e5e5;
+    display: block;
+    margin: 0 0 -1px;
+    padding: 8px 14px;
+}
+
+#time_container{ border-left: 3px solid #0088cc;}
+#time_list{ border-right: solid 2px #777;}
+#time_list ul{ margin: 0}
+#time_list ul h3{font-size: 18px;}
+#time_list li{ list-style: none; margin-top: 4px; font-size: 14px; text-align: right;}
+#time_list li a{ text-align: right; margin-right: 4px;display: inline-block;}
+#time_line{color: #0081c2; width: 15px; height: 100%;}
+#time_line .tml_spine_bg {display: block;height: 100%; margin-left: 6px; width: 3px;}
+#project_data{ min-height: 400px; }
+#project_data .popover{ position: relative; display: block; margin-bottom: 17px; clear: both;max-width:520px; z-index: 0;}
+#project_data .popover .arrow{ top: 17%;}
+#project_data .popover .arrow_dot{ width: 0; display:block; position: absolute; height: 0;top: 10%; margin-left: -45px;}
+#project_data .time_month_block{ width: 60px; margin-left: -40px; position: absolute; }
+#project_data .popover .popover-bottom{ height: 30px; border-top: 1px solid #eee; padding: 4px 9px;}
+#project_data .popover .popover-bottom span{ margin-right: 6px;}
+
+#top_nav_bar{position: fixed;z-index: 2;}
+#top_nav_bar div{ display: inline-block;}
+#top_nav_bar .arrow{
+    width: 0px;
+    height: 0px;
+    border-top: 20px solid transparent;
+    border-right: 24px solid #d9edf7;
+    border-bottom:20px solid transparent;
+    border-left: 24px solid transparent;
+    float: left;
+}
+#nav_right{min-width: 260px; height: 360px; position: fixed; background: #f7f7f9;box-shadow:0 5px 10px rgba(0, 0, 0, 0.2); float: right;top: 90px;right: 2px;border: 1px solid #e1e1e8;border-radius:4px;}
+#index_news{ margin: 0;}
+#index_news li{list-style: none; line-height: 24px; margin: 4px 0; overflow: hidden;}
+#index_news li a{ color: #333;}
+#index_news li.newsT a{font-family: '微软雅黑','黑体';font-size: 22px; text-decoration: none; white-space: nowrap; }
+.footer {
+    background-color: #f5f5f5;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 70px;
+    padding: 30px 0;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+}
+.page-header h3{font-family: 'Microsoft YaHei','黑体';}
+/*----------------------------------------图片轮播----------------------------------------------------------*/
+#myCarousel{ height: 320px;}
+#myCarousel .carousel-inner img{ max-height: 320px; width: 100%;}
+
+/*----------------------------------------工作台样式----------------------------------------------------------*/
+#container{ padding: 0px; min-height: 600px;}
+#btn_city_selected{ float: left; display: block; margin-left: -110px;}
+#ul_header .dropdown-submenu > .dropdown-menu{ margin-left: -45px; margin-top: 39px;}
+#ul_header li.divider-vertical{ margin: 0 1px;}
+.dropdown-submenu > a:after{ border: none;}
+.clear{ clear: both;}
+.form-horizontal .control-label{ width: 60px;}
+.form-horizontal .controls{ margin-left: 80px;}
+.page-header{ margin: 10px 0 9px;}
+.round{width:16px;height:16px;display: inline-block; margin:0;position: absolute;visibility:hidden;font-size:18px;line-heigth:16px;text-align:center;color:#dd3838;text-decoration:none;}
+
+#ul_left_menu{ margin-top: 0px; width: 14.8936%; margin-top: -5px;}
+#ul_left_menu i{ float: left; margin: 2px 5px;}
+#ul_left_menu li .badge{ padding-left: 5px; padding-right: 5px; margin-left: 10px;font-size: 11px;border-radius:9px;}
+
+#tb_message_list td .alert-block{ padding: 5px; min-width: 100px;}
+
+#nav_mod .active{ border-bottom: 2px solid #006dcc; font-weight: bold;}
+#nav_mod li{ margin-right: 3px;}
+#nav_mod li:hover{border-bottom: 2px solid #006dcc; }
+#nav_mod li.active a{ background: none;box-shadow:none;}
+
+#projectlist li,#teamlist li{ margin-left: 0; margin-right: 1.5%;}
+#projectlist li .thumbnail{ padding: 1px;text-decoration: none;}
+.project_item{ height: 150px; margin: 0px; padding: 4px; font-size: 14px;}
+.project_item_body{ height: 112px; border-bottom: 1px solid #fff;padding: 2px; line-height: 18px; word-wrap: break-word; overflow: hidden;}
+.project_item_body dt{ line-height: 18px;padding: 6px 0px;}
+.project_item_bottom{}
+.project_item_bottom span{ margin: 0 6px;}
+.textarea_height{height : expression(scrollHeight+4<minH ? minH : Math.min(scrollHeight+4,maxH));overflow : auto; max-height: 600px;}
+
+.table-condensed th, .table-condensed td{ padding: 4px 3px;}
+.tab-content{ overflow: visible;clear: both;}
+#a_project_lave_days{ font-size: 14px; margin-left: 12px; color: #222;text-decoration: none;}
+#a_project_lave_days span{ font-size: 18px; padding: 0 2px;}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly]{ cursor: pointer;}
+#plan_year{ padding: 17px 0 7px 0; clear: both;}
+#plan_year button{ background: none; border: none; font-weight: bold; font-size: 18px; margin-left: 22px;}
+
+#task_container{ border: 1px #aaa solid;}
+#txtTaskName{ float: left; border: none;height: 37px;}
+#btn_master_select{ background: none; border: none;box-shadow:none;}
+.div_user_bar{ margin-left: 12px; float: left;padding-top:9px;}
+#user_selected_bar{ margin: 4px 0; border-bottom: 1px solid #d0d0d0;  padding-left: 2px;  height: 45px;}
+#task_container #div_task_name,#task_container .navbar{ margin-bottom: 0; padding-top: 5px; border-bottom: 1px #aaa solid;height: 40px;}
+#task_container form,#task_container textarea{ margin: 0px; border: none;}
+#div_task_status{ padding-bottom: 10px;}
+#div_task_status span{ padding: 2px;}
+a.btn_user_icon,a.btn_org_icon {width: 40px;height: 40px; float: left; background: #5bce89; vertical-align: middle;text-align: center;}
+a.btn_org_icon { background: #3a87ad;}
+a.btn_user_icon i{ margin-top: 10px;}
+#div_user_bar a,#div_user_bar_tab a{ margin-top: 9px; margin-right: 6px; }
+.div_user_bar a i.icon-remove{margin: -6px 0 0 -6px;}
+#tb_task_list td{ padding: 5px 0;}
+
+#user_search_modal.modal,#clock_modal.modal{ position: absolute; z-index: 1051;margin-left:2px; width: 290px;}
+#clock_modal.modal{width: 360px;z-index: 9;}
+
+#user_search_modal p,#user_search_modal input{ margin-bottom: 0;}
+#user_search_modal .modal-body a{ display: block;}
+.div_join_bar{ background-color: #fff; border: 1px solid #ccc; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset; transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;}
+.div_join_bar div{ display: inline;}
+
+.textarea_comment{ height: 27px;}
+
+/*--------------------------弹框----------------------------------*/
+#task_detail_modal,#plan_detail_modal{ height: 700px; width: 690px;top:0px;right: 1%; margin-left: 2px;}
+#task_detail_modal .modal-body,#plan_detail_modal  .modal-body { max-height:600px;}
+.modal-body p{ margin: 0; color: #222;}
+.modal-body .alert{ padding: 2px;}
+#plan_detail_modal .open > .dropdown-menu{ top: 45px;}
+
+.files_result input,#div_user_bar input{ display: none;}
+#tb_file_list tr{ height: 40px;}
+#tb_file_list td img{ height: 30px; margin: 0px; }
+#tb_file_list .td_filename{ font-size: 16px; margin-bottom: 4px; font-family: verdana,"Microsoft YaHei",SimHei,SimSun;}
+.p_comment_date{ color: #aaa; font-size: 11px;}
+pre{ display: none;}
+
+#modal_city select option{line-height:30px;}
+#modal_city #model_city_list ul{ margin: 0;}
+#modal_city #model_city_list li{ list-style: none; display: inline-table; margin-right: 7px; margin-bottom:3px;white-space:nowrap;}
+.myalert{ margin: 0 auto 0 30%; min-width: 400px; position: fixed;top: 43px;z-index: 1036; min-height: 40px; color: #222;font-size: 16px;}
+
+#tb_team_search input{ margin-bottom: 0px;}
+
+#ul_tasklist,#projectlist_search{ margin-top: 14px;}
+#ul_tasklist li,#projectlist_search li,#ul_worklist li{ border-bottom: 1px solid #eee;padding-right: 6px;}
+#ul_tasklist li p span,#projectlist_search li p span,#ul_worklist li span{ margin-right: 12px;}
+#ul_tasklist li span i,#projectlist_search li span i{margin: 0 6px;color: #ccc;}
+#ul_tasklist .task_container{ border: 1px solid #e3efea; width: 98%;}
+#ul_tasklist .task_container textarea{ min-height: 20px;}
+#ul_tasklist li img{ max-height: 27px;}
+#ul_tasklist li .media-img{ display: inline-block; margin-right: 9px; float: left;}
+#ul_tasklist li .media-img img.zoom{ max-height: 120px; max-width: 120px; cursor: pointer;}
+#ul_tasklist li .media-img img.larger{ max-width: 420px; max-height: 100%;}
+
+#tb_plan_list .btn-group {font-size: 12px;}
+#tb_plan_list .btn-group .caret{vertical-align:middle;}
+
+.team_item a{ text-decoration: none;}
+.team_item span{ margin: 0 6px;}
+.team_item .team_body{height: 100px; border-bottom: 1px solid #eee;border-top: 1px solid #eee; margin: 4px 0;}
+.team_item .team_body h3{margin-top: 20px;text-align: center; clear: both; color: #555; font-size: 18px;}
+
+.media .table th, .media .table td{border: none; padding: 2px;}
+#process_container dl{ clear: both;}
+#process_container dt,#process_container dd{ float: left;}
+
+.icon-clock,.icon-clock.active{ background-image: url("../img/icon/clock.png"); background-position: 0 -59px; background-repeat: no-repeat;display: inline-block; height: 15px; line-height: 15px; vertical-align: text-top; width: 14px;}
+.icon-clock.active{background-position: 0 -80px;}
+#remind_show{display:none;float: right; position: fixed; right: 7px; top: 44px;z-index: 1000; min-width: 470px;}
+#remind_show table{width: 100%;}
+#remind_show .remind_item{ border-bottom: 1px solid #eee;}
+#remind_show .remind_item div{ display: inline-block;}
+.modal-header h3{ font-family:'微软雅黑'}
+i.icon-top{background-image:url("../img/icon/icon-top.png");padding: 8px 25px;background-position:center;}

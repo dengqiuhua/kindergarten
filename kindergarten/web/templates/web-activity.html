@@ -1,0 +1,44 @@
+{% extends 'web-base.html' %}
+{% block title %}活动{% endblock %}
+
+{% block main %}
+<div class="breadcrumbs margin-bottom-30">
+    <div class="container">
+        <ul class="pull-left breadcrumb">
+            <li><a href="{% url 'index' %}">首页</a> <span class="divider">/</span></li>
+            <li class="active">活动</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="widget-news">
+            <div class="headline">
+                <h3>活动</h3>
+            </div>
+            <div class="row-fluid">
+                <ul class="thumbnails">
+                    {% if activitylist %}
+                        {% for activity in activitylist %}
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <a href="{% url 'web-activity-detail' activity.id %}" target="_blank">
+                                        <img alt="300x200" style="width: 300px; height: 200px;" src="{{ activity.Image }}">
+                                    </a>
+                                    <div class="caption">
+                                        <p><a href="{% url 'web-activity-detail' activity.id %}" target="_blank">{{ activity.title }}</a></p>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                    {% endif %}
+                </ul>
+            </div>
+            {{ pagenationHtml | safe }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

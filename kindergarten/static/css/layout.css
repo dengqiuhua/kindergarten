@@ -1,0 +1,55 @@
+#container{ margin: 0;padding: 0;}
+.container{width: 1170px;}
+a:hover,a:focus{color: #72c02c;}
+.color-green, .color-green a{color: #72c02c;}
+
+.top{background: #eee;padding: 5px 0;}
+.top ul{ margin: 0;padding: 0; }
+.top ul li{color: #555;padding-bottom: 5px;display: inline-block;list-style: none outside none;}
+.header{ height: 220px;}
+.header img{height: 220px; width: 100%;}
+.header-nav{background: none repeat scroll 0 0 #f1f1f1;}
+.header-nav .navbar{ margin: 0;}
+.header-nav .navbar .nav > li{border-left:1px solid #dcdcdc;display: block;position: relative;}
+footer{ padding: 12px 7px;margin-top: 12px; color: #555;}
+footer hr{border-color: #72c02c;height: 2px;}
+
+a,li{color: #555;}
+
+.navbar .nav > .active > a, .navbar .nav > .active > a:focus {  background: none repeat scroll 0 0 #5e9503; box-shadow: none;
+    color: #fff;  text-decoration: none;}
+.navbar .nav > li > a{ color: #323232;display: block; font-size: 16px; font-weight: 400; padding: 10px 31px; position: relative;
+    text-shadow: none;text-transform: uppercase;transition: all 0.4s ease-in-out 0s;}
+ .navbar .nav > .active > a:hover{background: none;}
+.header-nav .navbar-inner{background: none;border: none;box-shadow:none;}
+
+.breadcrumbs { border-bottom: 1px solid #eee; padding: 5px 0 6px;}
+#myCarousel .carousel-inner img { max-height: 320px; width: 100%;}
+.headline {    border-bottom: 1px dotted #e4e9f0;    display: block;    margin: 0 0 20px;}
+.headline q{float: right;}
+.headline h3, .headline h4 {    border-bottom: 2px solid #72c02c;    font-size: 24px;    color: #585f69;    display: inline-block;
+    margin: 0 0 -2px;    padding-right: 10px;    text-shadow: 0 0 1px #f6f6f6;}
+ul.cat{margin: 0;}
+ul.cat li{margin-bottom: 8px;list-style: none;}
+
+#index_form {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 20px;
+    max-width: 400px;
+    padding: 19px 29px 29px;
+    margin-top: 2%;
+}
+#index_form .control-label{width: 60px;}
+#index_form .controls{ margin-left: 70px;}
+
+#classlist .active{
+    background: #72c02c;
+    color: #fff;
+}
+#classlist .active h4 a{color: #fff;}
+
+#courselist .row-fluid{margin: 7px 0; padding: 9px 0; border-bottom: 1px dashed #ccc;}
+#courselist .row-fluid h4{font-family: '微软雅黑', '黑体';}
+#courselist .row-fluid p{color: #777;}

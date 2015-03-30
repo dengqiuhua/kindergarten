@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+
+{% block main %}
+<div class="row-fluid">
+    <div class="span2 bs-docs-sidebar">
+        <ul id="ul_left_menu" class="nav nav-list bs-docs-sidenav affix">
+            <li class="{% ifequal leftnav 1 %}active{% endifequal %}"><a href="{% url 'admin-activity' %}"><i class=" icon-list-alt"></i>活动</a></li>
+            </li>
+        </ul>
+    </div>
+    <!--/span-->
+    <div class="span10">
+        {% block container %}container-{% endblock %}
+    </div>
+    <!--/span-->
+</div>
+{% endblock %}

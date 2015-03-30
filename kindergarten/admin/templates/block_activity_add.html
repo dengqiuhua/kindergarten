@@ -1,0 +1,113 @@
+{% extends 'block_activity.html' %}
+{% block title%}添加活动-{% endblock %}
+
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <script src="/static/js/bootstrap-daterangepicker/moment.js"></script>
+    <script src="/static/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+{% endblock %}
+
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>添加活动 </h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <form class="form-horizontal" action="" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="txtName">活动名称<span class="text-error">*</span></label>
+            <div class="controls">
+                <input type="text" id="txtName" name="title" class="span5" value="{% if activity and activity.title %}{{ activity.title }}{% endif %}" placeholder="必填">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">活动类型</label>
+            <div class="controls">
+                <label class="checkbox inline">
+                    <input type="radio" name="activity_type" value="1"
+                           {% if not activity %}checked="checked"{% endif %} {% ifequal activity.activity_type 0 %}checked="checked"{% endifequal %}{% ifequal activity.activity_type 1 %}checked="checked"{% endifequal %}>
+                    全体活动
+                </label>
+                <label class="checkbox inline">
+                    <input type="radio" name="activity_type" value="2"
+                           {% ifequal activity.activity_type 2 %}checked="checked"{% endifequal %}> 班级活动
+                </label>
+                <label class="checkbox inline">
+                    <input type="radio" name="activity_type" value="3"
+                           {% ifequal activity.activity_type 3 %}checked="checked"{% endifequal %}> 其他活动
+                </label>
+            </div>
+        </div>
+        <div id="div_class" class="control-group hide">
+            <label class="control-label" for="inputPhone">班级</label>
+            <div class="controls">
+                <select name="class">
+                    <option value="">--班级--</option>
+                    {% if classlist %}
+                        {% for class in classlist %}
+                            <option value="{{ class.id }}"
+                                    {% ifequal class.id profile.classid %}selected="selected"{% endifequal %}>{{ class.classname }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="usercounts">参与人数</label>
+            <div class="controls">
+                <input type="text" id="usercounts" name="usercounts" value="{% if activity and activity.usercounts %}{{ activity.usercounts }}{% endif %}"/>人
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="master">负责人</label>
+            <div class="controls">
+                <input type="text" id="master" name="master" value="{% if activity and activity.master %}{{ activity.master }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">活动地点</label>
+            <div class="controls">
+                <input type="text" name="address" class="span5" id="inputAddress"
+                       value="{% if activity.address %}{{ activity.address }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="activity_date">活动日期</label>
+            <div class="controls">
+                <input type="text" id="activity_date" name="activity_date" value="{% if activity and activity.activity_date_start %}{{ activity.activity_date_start }}{% endif %}{% if activity and activity.activity_date_end %} - {{ activity.activity_date_end }}{% endif %}">
+                <input type="hidden" name="activity_date_start" value="{% if activity and activity.activity_date_start %}{{ activity.activity_date_start }}{% endif %}"/>
+                <input type="hidden" name="activity_date_end" value="{% if activity and activity.activity_date_end %}{{ activity.activity_date_end }}{% endif %}"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="description">活动描述</label>
+            <div class="controls">
+                <textarea class="span7" rows="4" name="description">{% if activity.description %}{{ activity.description }}{% endif %} </textarea>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                {% if activity and activity.id %}
+                    <button type="button" onclick="Add({{ activity.id }});" class="btn btn-success">保存修改</button>
+                {% else %}
+                    <button type="button" onclick="Add();" class="btn btn-success">提交</button>
+                {% endif %}
+                <a href="{% url 'admin-news' %}" class="btn">取消</a>
+                <p>{% csrf_token %}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var urls = {
+        url_add: "{% url 'api-activity-add' %}",
+        url_get: "{% url 'api-activity-get' %}",
+        url_delete: "{% url 'api-activity-delete' 0 %}"
+    }
+</script>
+<script type="text/javascript" src="/static/jsadmin/activity.js"></script>
+<!--********************end container***************************************-->
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'web-base.html' %}
+{% block title %}{{ activity.title }}-活动{% endblock %}
+
+{% block main %}
+<div class="breadcrumbs margin-bottom-30">
+    <div class="container">
+        <ul class="pull-left breadcrumb">
+            <li><a href="{% url 'index' %}">首页</a> <span class="divider">/</span></li>
+            <li><a href="{% url 'web-activity' %}">活动</a> <span class="divider">/</span></li>
+            <li class="active">{{ activity.title }}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span9">
+            <div class="headline">
+                <h3>{{ activity.title }}</h3>
+            </div>
+            <div class="row-fluid">
+                <div class="well well-small text-center">
+                    {% if activity.activity_date_start %}
+                    <span class="muted">日期：{{ activity.activity_date_start }}--{{ activity.activity_date_end }}</span>
+                    {% endif %}
+                    {% if activity.address %}
+                    <span class="muted">地点：{{ activity.address }}</span>
+                    {% endif %}
+                    {% if activity.activity_type %}
+                    <span class="muted">类型：{{ activity.activity_type }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <ul>
+                {% if activityphoto %}
+                    <!-- ***************************图片轮播***********myCarousel************************ -->
+                <div id="myCarousel2" class="carousel slide">
+                    <ol class="carousel-indicators">
+                        {% for index in photocounts %}
+                        <li data-target="#myCarousel2" data-slide-to="{{ index }}" class="{% ifequal index 0 %}active{% endifequal %}"></li>
+                        {% endfor %}
+                    </ol>
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+
+                        {% for photo in activityphoto %}
+
+                        <div class="item {% ifequal photo.index 0 %}active{% endifequal %}">
+                            <img src="{{ photo.filepath }}" alt="{{ photo.title }}"/>
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+                    <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a>
+                </div>
+                <!-- ***************************图片轮播***********myCarousel***end********************* -->
+
+                {% endif %}
+
+            </ul>
+            <div class="row-fluid">
+                {% if activity.description %}
+                <p>{{ activity.description }}</p>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="span2">
+            <div class="headline">
+                <h3>其他活动</h3>
+            </div>
+            <div>
+                <ul id="newNews" class="cat">
+                    {% if activitylist %}
+                        {% for activity in activitylist %}
+                        <li>
+                            <div class="thumbnail">
+                                <a href="{% url 'web-activity-detail' activity.id %}" target="_blank">
+                                    <img alt="300x200" style="width: 160px; height: 120px;" src="{{ activity.Image }}">
+                                </a>
+                                <div class="caption">
+                                    <p><a href="{% url 'web-activity-detail' activity.id %}" target="_blank">{{ activity.title }}</a></p>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row-fluid">
+
+    </div>
+</div>
+
+{% endblock %}

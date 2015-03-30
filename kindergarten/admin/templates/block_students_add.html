@@ -1,0 +1,147 @@
+{% extends 'block_class.html' %}
+{% block title%}添加学生-{% endblock %}
+
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>{% if profile %}修改学生资料 {% else %}添加学生{% endif %} </h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <form class="form-horizontal" action="" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="txtName">姓名<span class="text-error">*</span></label>
+            <div class="controls">
+                <input type="text" id="txtName" name="name" value="{% if profile and profile.name %}{{ profile.name }}{% endif %}" placeholder="必填">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtNumber">学号</label>
+            <div class="controls">
+                <input type="text" id="txtNumber" name="number" value="{% if profile and profile.number %}{{ profile.number }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">性别</label>
+            <div class="controls">
+                <label class="checkbox inline">
+                    <input type="radio" name="sex" value="1"
+                           {% ifequal profile.sex 0 %}checked="checked"{% endifequal %}{% ifequal profile.sex 1 %}checked="checked"{% endifequal %}> 男
+                </label>
+                <label class="checkbox inline">
+                    <input type="radio" name="sex" value="2"
+                           {% ifequal profile.sex 2 %}checked="checked"{% endifequal %}> 女
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="selectYear">出生年月</label>
+            <div class="controls">
+                <div id="select_birthday" class="input-prepend input-append">
+                    <select class="span4" id="selectYear" name="year" data-name=""></select>
+                    <span class="add-on">年</span>
+                    <select class="span3" name="month" data-name=""></select>
+                    <span class="add-on">月</span>
+                    <select class="span3" name="day" data-name="">
+                        <option></option>
+                    </select>
+                    <span class="add-on">日</span>
+                    <input type="hidden" id="hd_birthday" value="{{ profile.birthday }}">
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPhone">班级</label>
+            <div class="controls">
+                <select name="class">
+                    <option value="">--班级--</option>
+                    {% if classlist %}
+                        {% for class in classlist %}
+                            <option value="{{ class.id }}" {% ifequal class.id profile.classid %}selected="selected"{% endifequal %}>{{ class.classname }}</option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPhone">电话</label>
+            <div class="controls">
+                <input type="text" name="phone" id="inputPhone" placeholder="固定电话或手机"
+                       value="{% if profile.phone %}{{ profile.phone }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputCity">所在城市</label>
+            <div class="controls">
+                <input type="text" name="city" id="inputCity" value="{% if profile.city %}{{ profile.city }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">居住地址</label>
+            <div class="controls">
+                <input type="text" name="address" class="span5" id="inputAddress" value="{% if profile.address %}{{ profile.address }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputGuardian">监护人</label>
+            <div class="controls">
+                <input type="text" name="guardian" id="inputGuardian" value="{% if profile.guardian %}{{ profile.guardian }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputGuardian_phone">监护人电话</label>
+
+            <div class="controls">
+                <input type="text" name="guardian_phone" id="inputGuardian_phone" value="{% if profile.guardian_phone %}{{ profile.guardian_phone }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="emergency_contact">紧急联系人</label>
+            <div class="controls">
+                <input type="text" name="emergency_contact" id="emergency_contact" value="{% if profile.emergency_contact %}{{ profile.emergency_contact }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="emergency_phone">紧急联系人电话</label>
+            <div class="controls">
+                <input type="text" name="emergency_phone" id="emergency_phone" value="{% if profile.emergency_phone %}{{ profile.emergency_phone }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">特长/爱好</label>
+            <div class="controls">
+                <input type="text" name="hobby" class="span5" id="hobby" value="{% if profile.hobby %}{{ profile.hobby }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">备注</label>
+            <div class="controls">
+                <input type="text" name="remark" class="span5" placeholder="饮食禁忌等" id="remark" value="{% if profile.remark %}{{ profile.remark }}{% endif %}">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                {% if profile and profile.id %}
+                    <button type="button" onclick="Add({{ profile.id }});" class="btn btn-success">保存修改</button>
+                {% else %}
+                    <button type="button" onclick="Add();" class="btn btn-success">提交</button>
+                {% endif %}
+                <a href="{% url 'admin-news' %}" class="btn">取消</a>
+                <p>{% csrf_token %}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var urls = {
+        url_add: "{% url 'api-student-add' %}",
+        url_get: "{% url 'api-student-get' %}",
+        url_delete: "{% url 'api-student-delete' 0 %}",
+        url_home: "{% url 'admin-students' %}"
+    }
+</script>
+<script type="text/javascript" src="/static/jsadmin/students.js"></script>
+<!--********************end container***************************************-->
+{% endblock %}

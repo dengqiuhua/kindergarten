@@ -1,0 +1,40 @@
+{% extends 'block_education.html' %}
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>
+            宝典列表
+            <small>
+                <form style="margin: 0;display: inline-block;margin-left: 24px;" class="form-search" onsubmit="return false;">
+                    <div class="input-append">
+                        <input type="text" style=" width: 140px;" placeholder="标题" class="search-query" name="txtTitle"
+                               onkeypress="if(event.keyCode==13||event.which==13){seachData();}"/>
+                        <button onclick="seachData();" class="btn" type="button"><i class="icon-search"></i> </button>
+                    </div>
+                </form>
+            </small>
+        </h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <table id="datalist" class="table table-bordered table-striped table-hover">
+
+    </table>
+    <div class="pagination"></div>
+</div>
+    <script type="text/javascript">
+        var urls = {
+            url_add: "{% url 'api-education-add' %}",
+            url_get: "{% url 'api-education-get' %}",
+            url_delete: "{% url 'api-education-delete' 0 %}",
+            url_edit:"{% url 'admin-education-add' %}"
+        };
+    </script>
+    <script type="text/javascript" src="/static/jsadmin/education.js"></script>
+    <script type="text/javascript">
+        //宝典列表
+        getDataList(1, urls.url_get);
+    </script>
+    <!--********************end container***************************************-->
+{% endblock %}

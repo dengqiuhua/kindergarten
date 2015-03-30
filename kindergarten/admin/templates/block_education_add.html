@@ -1,0 +1,88 @@
+{% extends 'block_education.html' %}
+{% block title%}发布宝典-{% endblock %}
+{% block script %}
+    {{ content_form.media }}
+    <script type="text/javascript" src="/static/js/plupload/plupload.full.min.js"></script>
+{% endblock %}
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>发布宝典 </h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <form class="form-horizontal" action="" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="txtProjectName">标题<span class="text-error">*</span></label>
+            <div class="controls">
+                <input type="text" id="txtTitle" name="title" class="span7" value="{% if education and education.title %}{{ education.title }}{% endif %}" placeholder="必填">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtMaster">作者</label>
+            <div class="controls">
+                <input type="text" id="txtAuthor" name="author" value="{% if education and education.author %}{{ education.author }}{% endif %}"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Description">内容</label>
+            <div class="controls">
+                {{ content_form }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtVideo">课程视频</label>
+            <div id="upload_container" class="controls">
+                <a href="javascript:;" id="pickfiles"><i class="icon-file"></i> 浏览视频 </a>
+                <div id="fileList"> {% if education and education.video %}{{ education.video }}{% endif %}</div>
+                <div id="console"></div>
+                <div id="fileid"></div>
+            </div>
+        </div>
+        <div class="control-group hide">
+            <label class="control-label" for="video">课程视频</label>
+            <div class="controls">
+                <input type="text" id="video" name="video" value="{% if education and education.video %}{{ education.video }}{% endif %}"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="source">来源</label>
+            <div class="controls">
+                <input type="text" id="source" name="source" value="{% if education and education.source %}{{ education.source }}{% endif %}"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                {% if education and education.id %}
+                    <button type="button" onclick="Add({{ education.id }});" class="btn btn-success">保存修改</button>
+                {% else %}
+                    <button type="button" onclick="Add();" class="btn btn-success">发布</button>
+                {% endif %}
+                <a href="{% url 'admin-education' %}" class="btn">取消</a>
+                <p>{% csrf_token %}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var urls = {
+        url_home:"{% url 'admin-education' %}",
+        url_add: "{% url 'api-education-add' %}",
+        url_get: "{% url 'api-education-get' %}",
+        url_delete: "{% url 'api-education-delete' 0 %}",
+        url_edit: "{% url 'admin-education-add' %}",
+        url_upload: "{% url 'api-attachement-add' %}",
+        url_course_file: "{% url 'api-course-file' %}"
+    }
+</script>
+<script type="text/javascript" src="/static/jsadmin/education.js"></script>
+    <script type="text/javascript">
+        //视频
+        initCourseFile();
+
+    </script>
+<!--********************end container***************************************-->
+{% endblock %}

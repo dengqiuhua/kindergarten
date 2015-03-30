@@ -1,0 +1,66 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+
+            <a href="/" class="brand" style="margin-left: -160px;">幼儿园后台管理</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="{% ifequal topnav 1 %}active{% endifequal %}">
+                        <a href="{% url 'admin-recommend' %}">首页推荐</a>
+                    </li>
+                    <li class="{% ifequal topnav 2 %}active{% endifequal %}">
+                        <a href="{% url 'admin-news' %}">新闻公告</a>
+                    </li>
+                    <li class="{% ifequal topnav 3 %}active{% endifequal %}">
+                        <a href="{% url 'admin-class' %}">班级管理</a>
+                    </li>
+                    <li class="{% ifequal topnav 4 %}active{% endifequal %}">
+                        <a href="{% url 'admin-activity' %}">活动</a>
+                    </li>
+                    <li class="{% ifequal topnav 5 %}active{% endifequal %}">
+                        <a href="{% url 'admin-course' %}">课程</a>
+                    </li>
+                    <li class="{% ifequal topnav 7 %}active{% endifequal %}">
+                        <a href="{% url 'admin-education' %}">育儿宝典</a>
+                    </li>
+                    <li class="{% ifequal topnav 6 %}active{% endifequal %}">
+                        <a href="{% url 'admin-reservation' %}">预约</a>
+                    </li>
+                </ul>
+
+                {% if request.user.is_authenticated %}
+                    <div class="pull-right">
+                        <ul id="ul_header" class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="javascript:;">欢迎您：{% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{ request.user.username }}{% endif %}</a></li>
+                            <li class="divider-vertical"></li>
+                            <li class="dropdown-submenu dropdown {% ifequal topnav 7 %}active{% endifequal %}">
+                                <a href="javascript:;" ><i class="icon-cog icon-white"></i> </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+
+                                    <li><a tabindex="-1" href="#">使用帮助</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{% url 'web-logout' %}" style="color: #3a87ad;">退出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <form class="navbar-form pull-right">
+                        <ul class="nav">
+                            <li><a href="/">首页</a></li>
+                            <li class="divider-vertical"></li>
+                            <li class="{% ifequal topnav 5 %}active{% endifequal %}"><a href="">注册</a></li>
+                            <li class="divider-vertical"></li>
+                            <li class="{% ifequal topnav 6 %}active{% endifequal %}"><a href="">登入</a></li>
+                        </ul>
+                    </form>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+
+{% block main %}
+<div class="row-fluid">
+    <div class="span10">
+        {% if bloglist %}
+            {% for blog in bloglist %}
+            <div class="media-body">
+                <h3><a href="">{{ blog.title }}</a> </h3>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

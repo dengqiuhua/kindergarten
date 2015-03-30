@@ -1,0 +1,96 @@
+{% extends 'web-base.html' %}
+{% block title %}班级{% endblock %}
+
+{% block main %}
+<div class="breadcrumbs margin-bottom-30">
+    <div class="container">
+        <ul class="pull-left breadcrumb">
+            <li><a href="{% url 'index' %}">首页</a> <span class="divider">/</span></li>
+            <li class="active">班级</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div id="classlist" class="span3">
+            {% if classlist %}
+                {% for class in classlist %}
+                    <div {% ifequal classinfo  class%}class="active"{% endifequal %}>
+                        <p class="pull-left"><i class="icon-file {% ifequal classinfo  class%}icon-white{% endifequal %}"></i></p>
+                        <div class="overflow-hidden"><h4>
+                            <a href="{% url 'web-class-detail' class.id %}">{{ class.classname }} </a>
+                        </h4>
+                            <p>班主任：{{ class.headteacher }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="span9">
+            <!--**************************************班级介绍  start*************************************-->
+            <div class="headline">
+                <h3>班级介绍</h3>
+            </div>
+            <div class="row-fluid">
+                <h5>{{ classinfo.classname }}</h5>
+                <div>
+                    {{ classinfo.description }}
+                </div>
+            </div>
+            <!--**************************************班级介绍  end*************************************-->
+            <!--**************************************班级介绍  start*************************************-->
+            <div class="headline">
+                <h3>班级教师</h3>
+            </div>
+            <div class="row-fluid">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>形象</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>学历</th>
+                        <th>职称</th>
+                    </tr>
+                    {% if class_teacher %}
+                        {% for teacher in class_teacher %}
+                        <tr>
+                            <td><img src="{{ teacher.photo }}"></td>
+                            <td>{{ teacher.name }}</td>
+                            <td>{{ teacher.sex }}</td>
+                            <td>{{ teacher.degree }}</td>
+                            <td>{{ teacher.teaching }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+            </div>
+            <!--**************************************班级介绍  end*************************************-->
+            <!--**************************************班级介绍  start*************************************-->
+            <div class="headline">
+                <h3>班级活动</h3>
+            </div>
+            <div class="row-fluid">
+                <ul class="thumbnails">
+                    {% if activitylist %}
+                    {% for activity in activitylist %}
+                    <li class="span4">
+                        <div class="thumbnail">
+                            <a href="{% url 'web-activity-detail' activity.id %}" target="_blank">
+                                <img alt="300x200" style="width: 300px; height: 200px;" src="{{ activity.Image }}">
+                            </a>
+                            <div class="caption">
+                                <p><a href="{% url 'web-activity-detail' activity.id %}" target="_blank">{{ activity.title }}</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

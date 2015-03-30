@@ -1,0 +1,139 @@
+{% extends 'block_class.html' %}
+{% block title%}添加教师-{% endblock %}
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <script src="/static/js/bootstrap-daterangepicker/moment.js"></script>
+    <script src="/static/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+{% endblock %}
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>添加教师</h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <form class="form-horizontal" action="" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="txtName">姓名<span class="text-error">*</span></label>
+            <div class="controls">
+                <input type="text" id="txtName" name="name" value="{% if profile and profile.name %}{{ profile.name }}{% endif %}" placeholder="必填">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">性别</label>
+            <div class="controls">
+                <label class="checkbox inline">
+                    <input type="radio" name="sex" value="1"
+                           {% if not profile %} checked="checked" {% endif %}{% ifequal profile.sex 0 %}checked="checked"{% endifequal %}{% ifequal profile.sex 1 %}checked="checked"{% endifequal %}> 男
+                </label>
+                <label class="checkbox inline">
+                    <input type="radio" name="sex" value="2"
+                           {% ifequal profile.sex 2 %}checked="checked"{% endifequal %}> 女
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="selectYear">出生年月</label>
+            <div class="controls">
+                <div id="select_birthday" class="input-prepend input-append">
+                    <select class="span4" id="selectYear" name="year" data-name=""></select>
+                    <span class="add-on">年</span>
+                    <select class="span3" name="month" data-name=""></select>
+                    <span class="add-on">月</span>
+                    <select class="span3" name="day" data-name="">
+                        <option></option>
+                    </select>
+                    <span class="add-on">日</span>
+                    <input type="hidden" id="hd_birthday" value="{{ profile.birthday }}">
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPhone">电话</label>
+            <div class="controls">
+                <input type="text" name="phone" id="inputPhone" placeholder="固定电话或手机"
+                       value="{% if profile.phone %}{{ profile.phone }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputCity">所在城市</label>
+            <div class="controls">
+                <input type="text" name="city" id="inputCity" value="{% if profile.city %}{{ profile.city }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">居住地址</label>
+            <div class="controls">
+                <input type="text" name="address" class="span5" id="inputAddress" value="{% if profile.address %}{{ profile.address }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="degree">学历</label>
+            <div class="controls">
+                <select name="degree">
+                    <option value="">--</option>
+                    <option value="1">小学</option>
+                    <option value="2">初中</option>
+                    <option value="3">高级中学</option>
+                    <option value="4">中专</option>
+                    <option value="5">高职</option>
+                    <option value="6">大专</option>
+                    <option value="7">本科</option>
+                    <option value="8">硕士研究生</option>
+                    <option value="9">博士研究生</option>
+                    <option value="10">海外留学生</option>
+                    <option value="11">其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="educate_school">毕业学校</label>
+            <div class="controls">
+                <input type="text" name="educate_school" id="educate_school" value="{% if profile.educate_school %}{{ profile.educate_school }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="joindate">入园日期</label>
+            <div class="controls">
+                <input type="text" name="joindate" id="joindate"
+                       value="{% if profile.joindate %}{{ profile.joindate }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="teaching">担任职责/教学范围</label>
+            <div class="controls">
+                <input type="text" name="teaching" id="teaching" class="span5"
+                       value="{% if profile.teaching %}{{ profile.teaching }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAddress">照片</label>
+            <div class="controls">
+                <input type="file" name="photo"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                {% if profile and profile.id %}
+                    <button type="button" onclick="Add({{ profile.id }});" class="btn btn-success">保存修改</button>
+                {% else %}
+                    <button type="button" onclick="Add();" class="btn btn-success">提交</button>
+                {% endif %}
+                <a href="{% url 'admin-news' %}" class="btn">取消</a>
+                <p>{% csrf_token %}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var urls = {
+        url_add: "{% url 'api-teacher-add' %}",
+        url_get: "{% url 'api-teacher-get' %}",
+        url_delete: "{% url 'api-teacher-delete' 0 %}"
+    }
+</script>
+<script type="text/javascript" src="/static/jsadmin/teacher.js"></script>
+<!--********************end container***************************************-->
+{% endblock %}

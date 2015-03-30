@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}育儿宝典{% endblock %}
+
+{% block main %}
+<div class="row-fluid">
+    <div class="span2 bs-docs-sidebar">
+        <ul id="ul_left_menu" class="nav nav-list bs-docs-sidenav affix">
+            <li class="{% ifequal leftnav 1 %}active{% endifequal %}"><a href="{% url 'admin-education' %}"><i class=" icon-list-alt"></i>育儿宝典</a></li>
+            <li class="{% ifequal leftnav 2 %}active{% endifequal %}"><a href="{% url 'admin-education-add' %}"> <i class="icon-plus"></i> 添加宝典</a>
+            </li>
+        </ul>
+    </div>
+    <!--/span-->
+    <div class="span10">
+        {% block container %}container-{% endblock %}
+    </div>
+    <!--/span-->
+</div>
+{% endblock %}

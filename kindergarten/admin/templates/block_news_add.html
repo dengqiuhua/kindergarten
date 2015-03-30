@@ -1,0 +1,66 @@
+{% extends 'block_news.html' %}
+{% block title%}发布新闻-{% endblock %}
+{% block script %}
+    {{ content_form.media }}
+{% endblock %}
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>发布新闻 </h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <form class="form-horizontal" action="" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="txtProjectName">类型</label>
+            <div class="controls">
+                <select name="news_type">
+                    <option value="0">新闻</option>
+                    <option value="1">公告</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtTitle">标题<span class="text-error">*</span></label>
+            <div class="controls">
+                <input type="text" id="txtTitle" name="title" class="span7" value="{% if news and news.title %}{{ news.title }}{% endif %}" placeholder="必填">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtMaster">作者</label>
+            <div class="controls">
+                <input type="text" id="txtAuthor" name="author" class="span7" value="{% if news and news.author %}{{ news.author }}{% endif %}"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Description">内容</label>
+            <div class="controls">
+                {{ content_form }}
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                {% if news and news.id %}
+                    <button type="button" onclick="Add({{ news.id }});" class="btn btn-success">保存修改</button>
+                {% else %}
+                    <button type="button" onclick="Add();" class="btn btn-success">发布</button>
+                {% endif %}
+                <a href="{% url 'admin-news' %}" class="btn">取消</a>
+                <p>{% csrf_token %}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var urls = {
+        url_home: "{% url 'admin-news' %}",
+        url_add: "{% url 'api-news-add' %}",
+        url_get: "{% url 'api-news-get' %}",
+        url_delete: "{% url 'api-news-delete' 0 %}"
+    }
+</script>
+<script type="text/javascript" src="/static/jsadmin/news.js"></script>
+<!--********************end container***************************************-->
+{% endblock %}

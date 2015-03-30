@@ -1,0 +1,42 @@
+{% extends 'block_activity.html' %}
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>
+            活动
+            <small>
+                <form style="margin: 0;display: inline-block;margin-left: 24px;" class="form-search" onsubmit="return false;">
+                    <div class="input-append">
+                        <input type="text" style=" width: 140px;" placeholder="标题" class="search-query" name="txtTitle"
+                               onkeypress="if(event.keyCode==13||event.which==13){seachData();}"/>
+                        <button onclick="seachData();" class="btn" type="button"><i class="icon-search"></i> </button>
+                    </div>
+                </form>
+                <a href="{% url 'admin-activity-add' %}" class="btn btn-success" style="margin-left: 90px;">添加活动</a>
+            </small>
+        </h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <table id="datalist" class="table table-bordered table-striped table-hover">
+
+    </table>
+    <div class="pagination"></div>
+</div>
+    <script type="text/javascript">
+        var urls = {
+            url_add: "{% url 'api-activity-add' %}",
+            url_get: "{% url 'api-activity-get' %}",
+            url_delete: "{% url 'api-activity-delete' 0 %}",
+            url_photo: "{% url 'admin-activity-photo' %}",
+            url_edit:"{% url 'admin-activity-add' %}"
+        };
+    </script>
+    <script type="text/javascript" src="/static/jsadmin/activity.js"></script>
+    <script type="text/javascript">
+        //活动列表
+        getDataList(1, urls.url_get);
+    </script>
+    <!--********************end container***************************************-->
+{% endblock %}

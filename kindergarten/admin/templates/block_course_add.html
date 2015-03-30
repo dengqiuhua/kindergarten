@@ -1,0 +1,97 @@
+{% extends 'block_course.html' %}
+{% block title%}发布课程-{% endblock %}
+{% block script %}
+    {{ content_form.media }}
+    <script type="text/javascript" src="/static/js/plupload/plupload.full.min.js"></script>
+{% endblock %}
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>发布课程 </h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <form class="form-horizontal" action="" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="txtProjectName">标题<span class="text-error">*</span></label>
+            <div class="controls">
+                <input type="text" id="txtTitle" name="title" class="span7" value="{% if course and course.title %}{{ course.title }}{% endif %}" placeholder="必填">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtMaster">讲师</label>
+            <div class="controls">
+                <input type="text" id="txtAuthor" name="teacher" value="{% if course and course.teacher %}{{ course.teacher }}{% endif %}"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Description">内容</label>
+            <div class="controls">
+                {{ content_form }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtVideo">课程视频</label>
+            <div id="upload_container" class="controls">
+                <a href="javascript:;" id="pickfiles"><i class="icon-file"></i> 浏览视频 </a>
+                <div id="fileList"> {% if course and course.video %}{{ course.video }}{% endif %}</div>
+                <div id="console"></div>
+                <div id="fileid"></div>
+            </div>
+        </div>
+        <div class="control-group hide">
+            <label class="control-label" for="video">课程视频</label>
+            <div class="controls">
+                <input type="text" id="video" name="video" value="{% if course and course.video %}{{ course.video }}{% endif %}"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="source">来源</label>
+            <div class="controls">
+                <input type="text" id="source" name="source" value="{% if course and course.source %}{{ course.source }}{% endif %}"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtVideo">封面</label>
+            <div id="upload_img_container" class="controls">
+                <a href="javascript:;" id="pick_files"><i class="icon-file"></i> 浏览图片 </a>
+                <div id="imgList"> {% if course and course.imagepath %}{{ course.imagepath }}{% endif %}</div>
+                <div id="console2"></div>
+                <div id="imgid"></div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                {% if course and course.id %}
+                    <button type="button" onclick="Add({{ course.id }});" class="btn btn-success">保存修改</button>
+                {% else %}
+                    <button type="button" onclick="Add();" class="btn btn-success">发布</button>
+                {% endif %}
+                <a href="{% url 'admin-course' %}" class="btn">取消</a>
+                <p>{% csrf_token %}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var urls = {
+        url_home:"{% url 'admin-course' %}",
+        url_add: "{% url 'api-course-add' %}",
+        url_get: "{% url 'api-course-get' %}",
+        url_delete: "{% url 'api-course-delete' 0 %}",
+        url_edit: "{% url 'admin-course-add' %}",
+        url_upload: "{% url 'api-attachement-add' %}",
+        url_course_file: "{% url 'api-course-file' %}"
+    }
+</script>
+<script type="text/javascript" src="/static/jsadmin/course.js"></script>
+    <script type="text/javascript">
+        //视频
+        initCourseFile();
+        //封面
+        initCourseImage();
+    </script>
+<!--********************end container***************************************-->
+{% endblock %}

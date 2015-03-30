@@ -1,0 +1,36 @@
+{% extends 'web-base.html' %}
+{% block title %}育儿宝典{% endblock %}
+
+{% block main %}
+<div class="breadcrumbs margin-bottom-30">
+    <div class="container">
+        <ul class="pull-left breadcrumb">
+            <li><a href="{% url 'index' %}">首页</a> <span class="divider">/</span></li>
+            <li class="active">育儿宝典</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="widget-news">
+            <div class="headline">
+                <h3>育儿宝典</h3>
+            </div>
+            <ul id="newNews" class="cat">
+                {% if educationlist %}
+                    {% for education in educationlist %}
+                        <li><i class=" icon-chevron-right color-green"></i>
+                            <a href="{% url 'web-education-detail' education.id %}" title="{{ education.title }}">
+                                {{ education.title }}</a>
+                        </li>
+                    {% endfor %}
+                    {{ pagenationHtml | safe }}
+                {% endif %}
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

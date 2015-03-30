@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+
+{% block main %}
+<div class="row-fluid">
+    <div class="span2 bs-docs-sidebar">
+        <ul id="ul_left_menu" class="nav nav-list bs-docs-sidenav affix">
+            <li class="{% ifequal leftnav 1 %}active{% endifequal %}"><a href="{% url 'admin-recommend' %}"><i class=" icon-picture"></i>首页推荐</a></li>
+            <li class="{% ifequal leftnav 2 %}active{% endifequal %}"><a href="{% url 'admin-recommend-add' %}"> <i class="icon-plus"></i> 新增推荐</a>
+            </li>
+        </ul>
+    </div>
+    <!--/span-->
+    <div class="span10">
+        {% block container %}container-{% endblock %}
+    </div>
+    <!--/span-->
+</div>
+{% endblock %}

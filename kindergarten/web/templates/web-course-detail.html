@@ -1,0 +1,61 @@
+{% extends 'web-base.html' %}
+{% block title %}{{ course.title }}-课程{% endblock %}
+
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="/static/js/flowplayer-5.5.2/skin/minimalist.css"/>
+    <script src="/static/js/flowplayer-5.5.2/flowplayer.min.js"></script>
+{% endblock %}
+
+{% block main %}
+<div class="breadcrumbs margin-bottom-30">
+    <div class="container">
+        <ul class="pull-left breadcrumb">
+            <li><a href="{% url 'index' %}">首页</a> <span class="divider">/</span></li>
+            <li><a href="{% url 'web-course' %}">课程</a> <span class="divider">/</span></li>
+            <li class="active">{{ course.title }}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span8">
+            <div style="text-align: center; border-bottom: 1px solid #ccc;">
+                <h3>{{ course.title }}</h3>
+                <p>
+                    <span class="muted">讲师：{{ course.teacher }}</span> &nbsp;
+                    <span class="muted">日期：{{ course.createtime }}</span>
+                    <span class="muted">阅读：{{ course.viewcounts }}</span>
+                </p>
+            </div>
+            {% if course.video %}
+            <div class="flowplayer">
+                <video src="{{ course.video }}" controls="controls"></video>
+            </div>
+            {% endif %}
+            <div style="margin-top: 20px;">
+                {{ course.description|safe }}
+            </div>
+        </div>
+        <div class="span4">
+            <div class="headline">
+                <h3>热点课程</h3>
+            </div>
+            <div>
+                <ul id="newNews" class="cat">
+                    {% if courselist %}
+                        {% for course in courselist %}
+                            <li><i class=" icon-chevron-right color-green"></i>
+                                <a href="{% url 'web-course-detail' course.id %}"
+                                   title="{{ course.title }}">{{ course.title }} <span class="muted">({{ course.viewcounts }})</span> </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

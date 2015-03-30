@@ -1,0 +1,73 @@
+{% extends 'block_class.html' %}
+{% block title%}添加班级-{% endblock %}
+
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>添加班级 </h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <form class="form-horizontal" action="" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="txtName">班级名称<span class="text-error">*</span></label>
+            <div class="controls">
+                <input type="text" id="txtName" name="classname" value="{% if profile and profile.classname %}{{ profile.classname }}{% endif %}" placeholder="必填">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtcontainer">班级容量</label>
+            <div class="controls">
+                <input type="text" id="txtcontainer" name="container" value="{% if profile and profile.container %}{{ profile.container }}{% endif %}"/>人
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="headteacher">班主任</label>
+            <div class="controls">
+                <input type="text" id="headteacher" name="headteacher" value="{% if profile and profile.headteacher %}{{ profile.headteacher }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPhone">班主任电话</label>
+            <div class="controls">
+                <input type="text" name="headteacher_phone" id="inputPhone" placeholder="固定电话或手机"
+                       value="{% if profile.headteacher_phone %}{{ profile.headteacher_phone }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="monitor">班长</label>
+            <div class="controls">
+                <input type="text" id="monitor" name="monitor" value="{% if profile and profile.monitor %}{{ profile.monitor }}{% endif %}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="description">班级简介</label>
+            <div class="controls">
+                <textarea class="span7" rows="4" name="description">{% if profile.description %}{{ profile.description }}{% endif %} </textarea>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                {% if profile and profile.id %}
+                    <button type="button" onclick="Add({{ profile.id }});" class="btn btn-success">保存修改</button>
+                {% else %}
+                    <button type="button" onclick="Add();" class="btn btn-success">提交</button>
+                {% endif %}
+                <a href="{% url 'admin-news' %}" class="btn">取消</a>
+                <p>{% csrf_token %}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var urls = {
+        url_add: "{% url 'api-class-add' %}",
+        url_get: "{% url 'api-class-get' %}",
+        url_delete: "{% url 'api-class-delete' 0 %}"
+    }
+</script>
+<script type="text/javascript" src="/static/jsadmin/class.js"></script>
+<!--********************end container***************************************-->
+{% endblock %}

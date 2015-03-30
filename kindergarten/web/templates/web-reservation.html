@@ -1,0 +1,150 @@
+{% extends 'web-base.html' %}
+{% block title %}家长预约{% endblock %}
+
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <script src="/static/js/bootstrap-daterangepicker/moment.js"></script>
+    <script src="/static/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <style type="text/css">
+    .daterangepicker .calendar th, .daterangepicker .calendar td{min-width: 28px;}
+    </style>
+{% endblock %}
+
+{% block main %}
+<div class="breadcrumbs margin-bottom-30">
+    <div class="container">
+        <ul class="pull-left breadcrumb">
+            <li><a href="{% url 'index' %}">首页</a> <span class="divider">/</span></li>
+            <li class="active">家长预约</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="widget-news">
+            <div class="headline">
+                <h3>家长预约</h3>
+            </div>
+            {% if reservation %}
+                 <div class="row-fluid">
+                    <div class="span7 text-center">
+                        <div class="alert alert-success">
+                            <h3>提交成功</h3>
+                            <p>您于{{ reservation.reserve_date }}在{{ reservation.address }}预约{{ reservation.student }}。</p>
+                            <p>我们将会及时确认，谢谢！</p>
+                        </div>
+                    </div>
+
+                </div>
+            {% else %}
+
+                <div class="row-fluid">
+                    <form class="form-horizontal" action="" method="post" onsubmit="return validateForm();">
+                        <div class="control-group">
+                            <label class="control-label" for="txtStudent">学生姓名<span class="text-error">*</span></label>
+                            <div class="controls">
+                                <input type="text" id="txtStudent" name="student" placeholder="必填">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtName">拜访者身份姓名<span class="text-error">*</span></label>
+                            <div class="controls">
+                                <input type="text" id="txtName" name="name" placeholder="必填">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="txtRole">拜访者身份<span class="text-error">*</span></label>
+                            <div class="controls">
+                                <input type="text" id="txtRole" name="role" placeholder="必填">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputPhone">电话</label>
+                            <div class="controls">
+                                <input type="text" name="phone" id="inputPhone" placeholder="固定电话或手机">
+                                <span class="muted">方便园方及时回复</span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="joindate">预约时间<span class="text-error">*</span></label>
+                            <div class="controls">
+                                <input type="text" name="reserve_date" id="joindate"  placeholder="必填">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputAddress">预约地址</label>
+                            <div class="controls">
+                                <input type="text" name="address" class="span5" id="inputAddress">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="remark">备注</label>
+                            <div class="controls">
+                                <input type="text" name="remark" class="span7" id="remark" >
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+
+                                <button type="submit" class="btn btn-success">提交</button>
+
+                                <a href="{% url 'index' %}" class="btn">取消</a>
+
+                                <span class="muted">注：带红色<span class="text-error">*</span> 的选项为必填项，提交后，将不能修改，若要取消预约，请直接联系幼儿园。</span>
+                                <p>{% csrf_token %}</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <script type="text/javascript">
+                    //预约日期
+                    if($("input[name=reserve_date]").length>0){
+                        $("input[name=reserve_date]").daterangepicker({
+                                format: 'YYYY-MM-DD',
+                                startDate: new Date().toLocaleDateString(),
+                                singleDatePicker: true
+                            }
+                        );
+                    }
+
+                    //提交认证
+                    function validateForm(){
+                        if($.trim($("input[name=student]").val())==""){
+                            $("input[name=student]").focus();
+                            return false;
+                        }
+
+                        if($.trim($("input[name=name]").val())==""){
+                            $("input[name=name]").focus();
+                            return false;
+                        }
+
+                        if($.trim($("input[name=role]").val())==""){
+                            $("input[name=role]").focus();
+                            return false;
+                        }
+
+                        if($.trim($("input[name=reserve_date]").val())==""){
+                            $("input[name=reserve_date]").focus();
+                            return false;
+                        }
+
+                        return confirm("您确定要提交预约吗？提交后，将不能修改，园方会确认您的预约信息。");
+                    }
+                </script>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
