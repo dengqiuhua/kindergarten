@@ -10,7 +10,7 @@ from api_students import AddStudent,GetStudentsList,SetStudentPhoto,DeleteStuden
 from api_teacher import AddTeacher,GetTeacherList,SetTeacherPhoto,DeleteTeacher
 from api_activity import AddActivity,GetActivityList,DeleteActivity,AddActivityPhoto,GetActivityPhotoList,DeleteActivityPhoto,SetActivityFace
 from api_attachement import FileUpload,Download,DeleteDirFile,FileActivity,FileCourse
-from api_course import AddCourse,GetCourseList,DeleteCourse
+from api_course import AddCourse,GetCourseList,DeleteCourse,CourseComment
 from api_education import AddEducation,GetEducationList,DeleteEducation
 from api_reservation import AddReservation,GetReservationList,GetReservationDetail,SetCallBack,SetReservationRead,DeleteReservation
 
@@ -79,6 +79,7 @@ patterns_course=patterns('',
     url(r'^add/$', AddCourse.as_view(),name="api-course-add"),
     url(r'^(?P<courseid>\d+)/delete/$', DeleteCourse.as_view(),name="api-course-delete"),
     url(r'^file/$', FileCourse.as_view(),name="api-course-file"),
+    url(r'^(?P<courseid>\d+)/comment/$', CourseComment.as_view(),name="api-course-comment"),
 )
 
 patterns_education=patterns('',

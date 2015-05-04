@@ -198,3 +198,9 @@ class Func:
         datalist = Reservation.objects.filter(**args).order_by("-createtime")[ (pageindex - 1) * pagesize:pagesize * pageindex]
         counts = Reservation.objects.filter(**args).count()
         return datalist, counts
+
+    '''获取评论分页列表'''
+    def GetCommentPageList(self, pagesize, pageindex, **args):
+        datalist = CommentInfo.objects.filter(**args).order_by("-createtime")[ (pageindex - 1) * pagesize:pagesize * pageindex]
+        counts = CommentInfo.objects.filter(**args).count()
+        return datalist, counts

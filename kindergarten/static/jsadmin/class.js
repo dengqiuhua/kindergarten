@@ -45,7 +45,7 @@ function getDataList(url){
 function fillDataList(msg){
     var html = "";
     if (msg != null && msg != "") {
-        html = "<tr><th>班级名称</th><th>简介</th><th>班级容量</th><th>班级人数</th><th>班主任</th><th>班长</th><th>修改 | 教师 | 删除</th></tr>";
+        html = "<tr><th>班级名称</th><th>简介</th><th>班级容量</th><th>班级人数</th><th>班主任</th><th>班长</th><th>修改 | 学生 | 删除</th></tr>";
 
         $.each(msg, function (i, n) {
             //同事姓名
@@ -54,11 +54,12 @@ function fillDataList(msg){
             html += "<td><a href=\""+(urls.url_student.replace('0',n.id))+"\" title=\"" + n.classname + "\">" + n.classname + "</a></td>";
             html += "<td>" + (n.description!=null?n.description.substr(0,20): "无") + "</td>";
             html += "<td>" + (n.container != null ? n.container : "--") + "</td>";
-            html += "<td>" + 0 + "</td>";
+            html += "<td>" + n.student_counts + "</td>";
             html += "<td>" + n.headteacher + "</td>";
             html += "<td>" + n.monitor + "</td>";
             html += "<td>";
             html += "<a href=\""+(urls.url_edit + "?act=edit&id=" + n.id)+"\"><i class=\"icon-edit\"></i>修改</a> | ";
+            html += "<a href=\""+(urls.url_student.replace('0',n.id))+"\">学生</a> | ";
             html += "<a href=\"javascript:;\" onclick=\"deleteData('" + n.classname + "'," + n.id + ");\"><i class=\"icon-trash\"></i>删除</a>";
             html += "</td>";
             html += "</tr>";

@@ -42,15 +42,24 @@ class ClassInfoSerializer(serializers.Serializer):
     headteacher_phone = serializers.CharField()
     monitor = serializers.CharField()
     remark = serializers.CharField()
+    student_counts = serializers.IntegerField()
 
 class ClassInfoShortSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     classname = serializers.CharField()
 
+'''学生短信息'''
+class StudentsShortSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name =serializers.CharField()
+    sex=serializers.IntegerField()
+    birthday=serializers.DateTimeField()
+
 '''班级学生'''
 class ClassStudentSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     classinfo = ClassInfoShortSerializer()
+    student = StudentsShortSerializer()
     year = serializers.IntegerField()
     joindate = serializers.DateTimeField()
     role = serializers.IntegerField()
@@ -171,3 +180,19 @@ class ReservationSerializer(serializers.Serializer):
     callback = serializers.CharField()
     phone = serializers.CharField()
     createtime = serializers.CharField()
+
+'''评论回复序列化'''
+class CommentParentSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    userid = UserSerializer()
+
+'''评论序列化'''
+class CommentSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    content = serializers.CharField()
+    #parentid = CommentParentSerializer()
+    mod = serializers.IntegerField()#1:新闻，2:课程，3:活动
+    obj_id = serializers.IntegerField()
+    userid = UserSerializer()
+    createtime = serializers.IntegerField()
+

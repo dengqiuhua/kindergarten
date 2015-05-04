@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 from django.conf import settings
 import os,time
 from kindergarten.script.util import Util
-from kindergarten.models import Recommendation,NewsInfo,User,ClassInfo,StudentInfo,TeacherInfo,ActivityInfo,ActivityPhoto,CourseInfo,ClassTeachers,EducationCare,Reservation
+from kindergarten.models import Recommendation,NewsInfo,User,ClassInfo,StudentInfo,TeacherInfo,ActivityInfo,ActivityPhoto,CourseInfo,ClassTeachers,EducationCare,Reservation,CommentInfo
 from kindergarten.script.func import Func
 func=Func()
 
@@ -252,6 +252,9 @@ class CourseDetail(TemplateView):
                 course.video = Util.getFileUrl(course.video)
             course.createtime = Util.timeFormat(course.createtime,True)
             context["course"] = course
+            context["commentObjId"] = course.id
+            #评论数,#1:新闻，2:课程，3:活动
+            context["commentCounts"] = CommentInfo.objects.filter(mod=2,obj_id=course.id).count()
             #课程
             context["courselist"] = CourseInfo.objects.filter().order_by("-viewcounts")[0:10]
         return render_to_response("web-course-detail.html", context, context_instance=RequestContext(request))

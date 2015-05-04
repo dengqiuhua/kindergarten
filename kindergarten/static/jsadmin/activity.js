@@ -144,6 +144,11 @@ function Add(id){
                     }else{
                         alert2("添加成功", 1);
                         $("form input,form textarea").val("");//清空表单
+                        //跳转
+                        setTimeout(function(){
+                            window.location.href = urls.url_photo + "?id=" + msg.data;
+                        },1600);
+
                     }
                 }
             }else{

@@ -1,5 +1,5 @@
 {% extends 'web-base.html' %}
-{% block title %}{{ course.title }}-课程{% endblock %}
+{% block title %}{{ course.title }}-课程-{% endblock %}
 
 {% block script %}
     <link rel="stylesheet" type="text/css" href="/static/js/flowplayer-5.5.2/skin/minimalist.css"/>
@@ -26,6 +26,7 @@
                     <span class="muted">讲师：{{ course.teacher }}</span> &nbsp;
                     <span class="muted">日期：{{ course.createtime }}</span>
                     <span class="muted">阅读：{{ course.viewcounts }}</span>
+                    <a class="text-info" href="#comment-place">评论：{{ commentCounts }}</a>
                 </p>
             </div>
             {% if course.video %}
@@ -36,6 +37,11 @@
             <div style="margin-top: 20px;">
                 {{ course.description|safe }}
             </div>
+            <!--*******************comment start************************-->
+            {% include 'web-comment.html' %}
+
+            <!--*******************comment end************************-->
+
         </div>
         <div class="span4">
             <div class="headline">
@@ -56,6 +62,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 {% endblock %}

@@ -3,11 +3,9 @@
 __author__ = 'monica'
 
 from rest_framework.views import APIView
-from rest_framework import viewsets,generics
-from kindergarten.models import User,CourseInfo
-from django.http import HttpResponse
+from kindergarten.models import User,CourseInfo,CommentInfo
 from kindergarten.script.util import Util
-from model_serializer import CourseInfoSerializer
+from model_serializer import CourseInfoSerializer,CommentSerializer
 from kindergarten.script.func import Func
 import time
 func=Func()
@@ -80,3 +78,33 @@ class DeleteCourse(APIView):
             return Util.GetResponseData(True,0)
         else:
             return Util.GetResponseData(False,-3)
+
+'''评论'''
+class CourseComment(APIView):
+    def post(self, request, **kwargs):
+        if 'content' in request.POST and request.POST['content'] and 'courseid' in kwargs and kwargs['courseid']:
+            content = Util.GetFilterString(request.POST['content'])
+            courseid = kwargs['courseid']
+            user = User()
+            if request.user and request.user.is_authenticated():
+                user = request.user
+            #1:新闻，2:课程，3:活动
+            comment = CommentInfo.objects.create(content=content,userid=user,mod=2,obj_id=courseid)
+            return Util.GetResponseData(True,0,comment.id)
+        return Util.GetResponseData(False,-3)
+    def get(self, request, **kwargs):
+        if 'courseid' in kwargs and kwargs['courseid']:
+            courseid = kwargs['courseid']
+            #分页
+            pagesize, pageindex = Util.getPageSizeAndIndex(request)
+            args={}
+            args['mod'] = 2
+            args['obj_id'] = courseid
+            #查询条件
+            if 'content' in request.GET and request.GET['content']:
+                args['content__contains'] = request.GET['content'].strip()
+            datalist,counts = func.GetCommentPageList(pagesize, pageindex,**args)
+            data=CommentSerializer(datalist).data
+            return Util.GetResponseData(True,0,data,counts)
+        return Util.GetResponseData(False,-3)
+

@@ -573,3 +573,36 @@ var Ajax=function(url,option,callback){
     };
     $.ajax(param);
 };
+
+
+//社交时间
+function getGamTime(timestamp){
+    var myDate=new Date();
+    var now=myDate.getTime();//当前时间戳
+    var today = new Date(myDate.toLocaleDateString()).getTime();//今天的时间戳
+    //var today = js_strto_time("2015/03/18 01:00:00");
+    var yesterday= today-3600*24*1000;
+    var timestampJS=new Date(parseInt(timestamp) * 1000).getTime();
+    //alert(timestamp);
+    //var thisYear
+    var date=new Date(parseInt(timestamp) * 1000);
+    var day=date.getDate(),
+        hours = date.getHours(),
+        minutes = date.getMinutes();
+    if(hours<10){
+        hours = "0"+hours;
+    }
+    if(minutes<10){
+        minutes = "0"+minutes;
+    }
+    if(timestampJS>=today){
+        //今天
+        return "今天"+hours+":"+minutes;
+    }else if(timestampJS>=yesterday){
+        //昨天
+        return "昨天"+hours+":"+minutes;
+    }else{
+        //今年
+        return (date.getMonth()+1)+"月"+day+"日\t"+hours+":"+minutes;
+    }
+}

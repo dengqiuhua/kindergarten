@@ -1,0 +1,23 @@
+<div class="row-fluid">
+    <div class="widget-news">
+        <div class="headline">
+            <h3>评论</h3>
+        </div>
+    </div>
+</div>
+<div id="comment-place" class="row-fluid">
+    <form class="form-horizontal" onsubmit="return false;" >
+        <div class="row-fluid">
+            <textarea id="form-comment" name="comment" class="span10" placeholder="写点评论吧？"></textarea>
+            <button type="button" class="btn btn-large btn-success" onclick="addComment();">评论</button>
+        </div>
+    </form>
+</div>
+<div id="datalist" class="row-fluid">
+
+</div>
+<script type="text/javascript">
+var url_comment = "{% url 'api-course-comment' commentObjId %}";
+</script>
+<script type="text/javascript" src="/static/js/libs.js"></script>
+<script type="text/javascript" src="/static/js/comment.js"></script>
