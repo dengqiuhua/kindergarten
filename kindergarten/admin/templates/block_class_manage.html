@@ -13,7 +13,7 @@
                         <button onclick="seachData();" class="btn" type="button"><i class="icon-search"></i> </button>
                     </div>
                 </form>
-                <a href="{% url 'admin-class-add' %}" class="btn btn-success" style="margin-left: 90px;">添加学生</a>
+                <a href="{% url 'admin-student-add' %}" class="btn btn-success" style="margin-left: 90px;">添加学生</a>
             </small>
         </h3>
     </div>
@@ -38,6 +38,7 @@
         var urls = {
             url_add: "{% url 'api-class-add' %}",
             url_student_get: "{% url 'api-class-students' 0 %}",
+            url_student_edit: "{% url 'admin-student-add' %}",
             url_student_add: "{% url 'api-class-students-add' 0 %}",
             url_student_delete: "{% url 'api-class-students-delete' 0 %}",
             url_teacher_get: "{% url 'api-class-teacher' 0 %}",
@@ -47,11 +48,12 @@
             url_delete: "{% url 'api-class-delete' 0 %}",
             url_edit:"{% url 'admin-class-add' %}"
         };
+        var classid = {{ classinfo.id }};//班级id
     </script>
     <script type="text/javascript" src="/static/jsadmin/class_students.js"></script>
     <script type="text/javascript">
         //班级列表
-        getDataList(1,urls.url_student_get);
+        getDataList(1,urls.url_student_get.replace("0",{{ classinfo.id }}));
     </script>
     <!--********************end container***************************************-->
 {% endblock %}
