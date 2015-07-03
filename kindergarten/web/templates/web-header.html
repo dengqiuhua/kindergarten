@@ -1,63 +1,35 @@
 <header>
-    <div class="top">
-        <div class="container">
-            <div class="pull-right">
-        {% if request.user.is_authenticated %}
-            <ul id="ul_header" class="nav">
-                <li><a href="javascript:;">欢迎您：{% if request.user.first_name %}
-                    {{ request.user.first_name }}{% else %}{{ request.user.username }}{% endif %}</a>
-                </li>
-                <li class="divider">|</li>
-                <li><a href="{% url 'admin-index' %}">后台管理</a></li>
-                <li class="divider">|</li>
-                <li><a href="{% url 'web-logout' %}">退出</a></li>
-            </ul>
-        {% else %}
-              <ul>
-                <li>欢迎来到幼儿园</li>
-                <li class="divider">|</li>
-                <li><a href="{% url 'web-login' %}">登入</a></li>
 
-            </ul>
-        {% endif %}
-            </div>
-        </div>
-    </div>
     <div class="row-fluid header">
-        <img src="/static/img/banner/top_banner.jpg">
-    </div>
-    <div class="row-fluid header-nav">
         <div class="container">
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <a href="/" class="brand" style="margin-left: 0px;">峨眉安吉儿国际幼稚园</a>
 
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="{% ifequal topnav 1 %}active{% endifequal %}">
-                                <a href="/">首页</a>
-                            </li>
-                            <li class="{% ifequal topnav 2 %}active{% endifequal %}">
-                                <a href="{% url 'web-news' %}">新闻公告</a>
-                            </li>
-                            <li class="{% ifequal topnav 3 %}active{% endifequal %}">
-                                <a href="{% url 'web-activity' %}">活动</a>
-                            </li>
-                            <li class="{% ifequal topnav 4 %}active{% endifequal %}">
-                                <a href="{% url 'web-class' %}">班级</a>
-                            </li>
-                            <li class="{% ifequal topnav 5 %}active{% endifequal %}">
-                                <a href="{% url 'web-course' %}">课程</a>
-                            </li>
-                            <li class="{% ifequal topnav 6 %}active{% endifequal %}">
-                                <a href="{% url 'web-education' %}">育儿宝典</a>
-                            </li>
-                        </ul>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li class="{% ifequal topnav 1 %}active{% endifequal %}">
+                            <a href="/">首页</a>
+                        </li>
+                        <li class="{% ifequal topnav 2 %}active{% endifequal %}">
+                            <a href="{% url 'web-news' %}">新闻公告</a>
+                        </li>
+                        <li class="{% ifequal topnav 3 %}active{% endifequal %}">
+                            <a href="{% url 'web-activity' %}">活动</a>
+                        </li>
+                        <li class="{% ifequal topnav 4 %}active{% endifequal %}">
+                            <a href="{% url 'web-class' %}">班级</a>
+                        </li>
+                        <li class="{% ifequal topnav 5 %}active{% endifequal %}">
+                            <a href="{% url 'web-course' %}">课程</a>
+                        </li>
+                        <li class="{% ifequal topnav 6 %}active{% endifequal %}">
+                            <a href="{% url 'web-education' %}">育儿宝典</a>
+                        </li>
+                        <li class="{% ifequal topnav 7 %}active{% endifequal %}">
+                            <a href="{% url 'web-about' %}">园所介绍</a>
+                        </li>
+                    </ul>
 
-
-                    </div>
                 </div>
-            </div>
+
         </div>
     </div>
 
