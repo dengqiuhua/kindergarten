@@ -2,17 +2,19 @@
 {% block title %}{% endblock %}
 
 {% block main %}
-    <div class="breadcrumbs margin-bottom-30">
-        <div class="container">
-            {% if noticelist %}
-            <ul class="pull-left breadcrumb">
-                <li id="notice"><i class="icon-volume-down color-green"></i> 公告：
-                    {% for notice in noticelist %}
-                    <a href="{% url 'web-news-detail' notice.id %}" title="{{ notice.title }}">{{ notice.title }}</a>
-                    {% endfor %}
-                </li>
-            </ul>
-            {% endif %}
+    <div class="container">
+        <div class="breadcrumbs margin-bottom-30">
+            <div class="row-fluid">
+                {% if noticelist %}
+                <ul class="pull-left breadcrumb">
+                    <li id="notice"><i class="icon-volume-down color-green"></i> 公告：
+                        {% for notice in noticelist %}
+                        <a href="{% url 'web-news-detail' notice.id %}" title="{{ notice.title }}">{{ notice.title }}</a>
+                        {% endfor %}
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="container">

@@ -331,6 +331,17 @@ class ReservationAdd(TemplateView):
         return render_to_response("web-reservation.html", context, context_instance=RequestContext(request))
 
 
+'''关于我们【学园介绍】'''
+class AboutUs(TemplateView):
+    def get(self, request, *args, **kwargs):
+        context = {}
+        context["mod"] = 1
+        #联系我们
+        if "lx" in request.GET:
+            context["mod"] = 2
+        context["topnav"] = 7
+        return render_to_response("web-about.html", context, context_instance=RequestContext(request))
+
 '''文件下载'''
 class Download(TemplateView):
     def get(self, request, *args, **kwargs):
@@ -366,7 +377,7 @@ class Login(TemplateView):
         if request.user.is_authenticated():
             return HttpResponseRedirect(reverse('admin-index'))
         context = {}
-        context['topnav'] = 6
+        context['topnav'] = 1
         #context['form'] =form
         context['username']=""
         if 'username' in request.COOKIES:
