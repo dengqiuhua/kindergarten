@@ -1,6 +1,13 @@
 # coding=utf-8
 from rest_framework import serializers
 
+'''用户信息序列化'''
+class UserInfoSerializer(serializers.Serializer):
+    id=serializers.IntegerField()
+    username=serializers.CharField()
+    email= serializers.CharField()
+    first_name=serializers.CharField()
+
 '''用户序列化'''
 class UserSerializer(serializers.Serializer):
     id=serializers.IntegerField()

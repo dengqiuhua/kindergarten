@@ -204,3 +204,9 @@ class Func:
         datalist = CommentInfo.objects.filter(**args).order_by("-createtime")[ (pageindex - 1) * pagesize:pagesize * pageindex]
         counts = CommentInfo.objects.filter(**args).count()
         return datalist, counts
+
+    '''获取用户分页列表'''
+    def GetUserList(self, pagesize, pageindex, **args):
+        datalist = User.objects.filter(**args).order_by("-id")[(pageindex - 1) * pagesize:pagesize * pageindex]
+        counts = User.objects.filter(**args).count()
+        return datalist, counts

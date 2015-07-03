@@ -282,6 +282,23 @@ class EducationAdd(TemplateView):
         context["content_form"] = form
         return render_to_response("block_education_add.html", context, context_instance=RequestContext(request))
 
+'''用户管理'''
+class UserHome(TemplateView):
+    @method_decorator(login_required(login_url='/login/'))
+    def get(self, request, *args, **kwargs):
+        context = {}
+        context["topnav"] = 8
+        context["leftnav"] = 1
+        return render_to_response("block_user_home.html", context, context_instance=RequestContext(request))
+
+'''添加用户'''
+class UserAdd(TemplateView):
+    @method_decorator(login_required(login_url='/login/'))
+    def get(self, request, *args, **kwargs):
+        context = {}
+        context["topnav"] = 8
+        context["leftnav"] = 1
+        return render_to_response("block_user_add.html", context, context_instance=RequestContext(request))
 
 '''预约管理'''
 class ReservationHome(TemplateView):

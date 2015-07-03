@@ -27,6 +27,9 @@
                     <li class="{% ifequal topnav 6 %}active{% endifequal %}">
                         <a href="{% url 'admin-reservation' %}">预约</a>
                     </li>
+                    <li class="{% ifequal topnav 8 %}active{% endifequal %}">
+                        <a href="{% url 'admin-user' %}">用户管理</a>
+                    </li>
                 </ul>
 
                 {% if request.user.is_authenticated %}

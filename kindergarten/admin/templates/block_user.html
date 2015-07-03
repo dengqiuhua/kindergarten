@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}用户管理{% endblock %}
+
+{% block main %}
+<div class="row-fluid">
+    <div class="span2 bs-docs-sidebar">
+        <ul id="ul_left_menu" class="nav nav-list bs-docs-sidenav affix">
+            <li class="{% ifequal leftnav 1 %}active{% endifequal %}"><a href="{% url 'admin-user' %}"><i class="icon-user"></i>用户管理</a></li>
+        </ul>
+    </div>
+    <!--/span-->
+    <div class="span10">
+        {% block container %}container-{% endblock %}
+    </div>
+    <!--/span-->
+</div>
+{% endblock %}

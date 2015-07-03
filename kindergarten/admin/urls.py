@@ -32,6 +32,9 @@ urlpatterns = patterns('',
     url(r'^education/$', EducationHome.as_view(), name='admin-education'),
     url(r'^education/add/$', EducationAdd.as_view(), name='admin-education-add'),
 
+    url(r'^user/$', UserHome.as_view(), name='admin-user'),
+    url(r'^user/add/$', UserAdd.as_view(), name='admin-user-add'),
+
     url(r'^yuyue/$', ReservationHome.as_view(), name='admin-reservation'),
 
     #url(r'^(?P<id>\d+)$', BlogDetail.as_view(), name='blog-detail'),

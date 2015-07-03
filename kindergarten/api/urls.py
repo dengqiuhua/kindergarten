@@ -13,6 +13,7 @@ from api_attachement import FileUpload,Download,DeleteDirFile,FileActivity,FileC
 from api_course import AddCourse,GetCourseList,DeleteCourse,CourseComment
 from api_education import AddEducation,GetEducationList,DeleteEducation
 from api_reservation import AddReservation,GetReservationList,GetReservationDetail,SetCallBack,SetReservationRead,DeleteReservation
+from api_user import Register,GetUserList,ChangePassword,DeleteUser,UpdateUser,GetUserInfo
 
 patterns_recommend=patterns('',
     url(r'^$', GetRecommendList.as_view(),name="api-recommend-get"),
@@ -98,6 +99,15 @@ patterns_reservation=patterns('',
     url(r'^(?P<reservationid>\d+)/delete/$', DeleteReservation.as_view(),name="api-reservation-delete"),
 )
 
+patterns_user=patterns('',
+    url(r'^$', GetUserList.as_view(),name="api-user-get"),
+    url(r'^(?P<userid>\d+)/detail/$', GetUserInfo.as_view(), name="api-user-detail"),
+    url(r'^add/$', Register.as_view(),name="api-user-add"),
+    url(r'^(?P<userid>\d+)/password/$', ChangePassword.as_view(), name="api-user-password"),
+    url(r'^(?P<userid>\d+)/update/$', UpdateUser.as_view(), name="api-user-update"),
+    url(r'^(?P<userid>\d+)/delete/$', DeleteUser.as_view(),name="api-user-delete"),
+)
+
 urlpatterns = patterns('',
     #首页推荐接口
     (r'^recommend/', include(patterns_recommend)),
@@ -119,5 +129,7 @@ urlpatterns = patterns('',
     (r'^education/', include(patterns_education)),
     #预约接口
     (r'^reservation/', include(patterns_reservation)),
+    #用户接口
+    (r'^user/', include(patterns_user)),
 
 )

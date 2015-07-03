@@ -1,0 +1,86 @@
+{% extends 'block_user.html' %}
+{% block title%}添加用户-{% endblock %}
+{% block script %}
+    <link rel="stylesheet" type="text/css" href="/static/js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <script src="/static/js/bootstrap-daterangepicker/moment.js"></script>
+    <script src="/static/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+{% endblock %}
+{% block container %}
+<!--*************************container**********************************-->
+<div class="row-fluid">
+    <div class="page-header">
+        <h3>添加用户</h3>
+    </div>
+</div>
+<div class="row-fluid">
+    <div id="index_form">
+            <div id="tab_regester" class="page-header">
+                <h3 class="active">用户注册</h3>
+            </div>
+            <form class="form-horizontal" action="." method="post" onsubmit="return false;">
+
+                <div class="control-group">
+                    <label class="control-label" for="inputUserName">账号</label>
+
+                    <div class="controls">
+                        <input type="text" name="username" id="inputUserName" value="{{ username }}" placeholder="账号、手机号或邮箱"
+                               style=" ime-mode: disabled;">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputName">姓名</label>
+
+                    <div class="controls">
+                        <input type="text" name="name" id="inputName" value="{{ name }}" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputEmail">邮箱</label>
+
+                    <div class="controls">
+                        <input type="text" name="email" id="inputEmail" value="{{ email }}" placeholder="邮箱" style="ime-mode: disabled;">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">密码</label>
+
+                    <div class="controls">
+                        <input type="password" name="password" id="inputPassword" placeholder="密码"
+                               value="{{ password }}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword2">确认密码</label>
+
+                    <div class="controls">
+                        <input type="password" name="password2" id="inputPassword2" placeholder="密码"
+                               value="{{ password }}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="button" class="btn btn-warning" onclick="Register();">注册</button>
+                    </div>
+                </div>
+                <p>
+
+                <div id="reg_tipmsg" class="alert hide">
+                    {{ msg }}
+                </div>
+                </p>
+                <p>{% csrf_token %}</p>
+            </form>
+    </div>
+</div>
+<script type="text/javascript">
+    var urls = {
+        url_add: "{% url 'api-user-add' %}",
+        url_get: "{% url 'api-user-get' %}",
+        url_user: "{% url 'admin-user' %}",
+        url_delete: "{% url 'api-user-delete' 0 %}"
+    }
+</script>
+<script type="text/javascript" src="/static/jsadmin/user.js"></script>
+<!--********************end container***************************************-->
+{% endblock %}
